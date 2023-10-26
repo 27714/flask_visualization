@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <title>展示news</title>
+</head>
+  <style>
+
+    table{
+    border: 1px solid white;
+      height:150px;
+    }
+    .w1{
+        border:2px solid white;
+        width:1100px;
+        height:250px;
+        margin-left:100px;
+
+    }
+    form{
+        padding-left:10px
+    }
+
+        .card{
+      background: #FFF0F5;
+      width: 1340px;
+      height: 680px;
+      position: relative;
+      border-radius: 6px;
+      margin-top:15px;
+      margin-left:90px;
+    }
+    .card::before{
+      content:'';
+      width: 1361px;
+      height: 700px;
+      border-radius: 8px;
+      background-image: linear-gradient(
+      var(--rotate),
+      #5ddcff,
+      #3c67e3 50%,
+      #ff0000);
+      position: absolute;
+      animation: spin 1.5s linear infinite;
+      top: -10px;
+      left: -11px;
+      z-index: -1;
+    }
+    @property --rotate{
+      syntax:"<angle>";
+      inherits:false;
+      initial-value:0deg;
+    }
+    @keyframes spin{
+      0%{
+        --rotate:0deg;
+      }
+      100%{
+        --rotate:360deg;
+      }
+    }
+    .ss{
+        width:1290px;
+        height:660px;
+        margin-left:30px;
+    }
+    .se{
+    margin-top:10px;
+        width:600px;
+    }
+    .fg{
+        width:700px;
+        height:660px;
+        margin-left:20px;
+    }
+    p{
+    margin-left:160px;}
+  </style>
+<body>
+<div class="card">
+<table class="ss">
+    <tr>
+        <td class="se">
+            <table class="table table-hover">
+  <thead>
+    <tr>
+      <th scope="col">id号</th>
+      <th scope="col">商品名称</th>
+      <th scope="col">价格</th>
+    </tr>
+  </thead>
+  <tbody>
+  {% for user in users %}
+    <tr>
+      <th scope="row">{{user.id}}</th>
+      <td>{{user.commodity}}</td>
+        <td>{{user.price}}</td>
+
+    </tr>{% endfor %}
+  </tbody>
+</table>
+        </td>
+        <td>
+           <table class="fg">
+               <tr>
+                   <td colspan="2"><img src="static/images/img_2.png" width="720px" height="400px"></td>
+               </tr>
+               <tr>
+                   <td width="280px">
+                       <form   method = "post">
+             <!--启动CSRF-->
+                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span>您可以在此新增商品</span><br><br>
+                {{form.csrf_token}}
+            {{form.hidden_tag()}}
+            {{ form.commodity.label }}
+            {{form.commodity}}
+            {%for e in form.commodity.errors%}
+            {{e}}
+            {%endfor%}
+            <br><br>
+                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; {{ form.price.label }}
+            {{form.price}}
+            {%for e in form.price.errors%}
+            {{e}}
+            {%endfor%}
+         <br><br>
+       &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+         &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;{{ form.submit()}}
+        </form>
+
+                   </td>
+                   <td width="280px">
+                       <form  method = "post">
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span>您可以在此删除商品</span><br><br>
+            {{form.csrf_token}}
+       {{form.hidden_tag()}}
+        {{ form.commodity.label }}
+       {{form.commodity}}
+       {%for e in form.commodity.errors%}
+            {{e}}
+       {%endfor%}<br><br><br><br>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;{{ form.submit1()}}
+     <p><a href="{{ url_for('home') }}">返回登录</a></p>
+    </form>
+
+                   </td>
+               </tr>
+           </table>
+
+        </td>
+    </tr>
+</table>
+</div>
+<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+</body>
+</html>

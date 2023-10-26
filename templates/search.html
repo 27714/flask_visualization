@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="cn-zh">
+<head>
+    <meta charset="UTF-8">
+    <title>搜索结果展示</title>
+</head>
+<style>
+    a{
+        margin-left:50px;
+    }
+    .card{
+      background: #FFF0F5;
+      width: 1340px;
+      height: 680px;
+      position: relative;
+      border-radius: 6px;
+      margin-top:15px;
+      margin-left:90px;
+    }
+    .card::before{
+      content:'';
+      width: 1361px;
+      height: 700px;
+      border-radius: 8px;
+      background-image: linear-gradient(
+      var(--rotate),
+      #5ddcff,
+      #3c67e3 50%,
+      #ff0000);
+      position: absolute;
+      animation: spin 1.5s linear infinite;
+      top: -10px;
+      left: -11px;
+      z-index: -1;
+    }
+    @property --rotate{
+      syntax:"<angle>";
+      inherits:false;
+      initial-value:0deg;
+    }
+    @keyframes spin{
+      0%{
+        --rotate:0deg;
+      }
+      100%{
+        --rotate:360deg;
+      }
+    }
+</style>
+<body>
+<div class="card">
+    <center>
+        <img src="static/images/zhifu.jpg" height="500px;">
+        <a href="{{url_for('List')}}">取消支付</a>
+        <a href="{{url_for('fu')}}">我已支付</a>
+    </center>
+</div>
+
+</body>
+</html>
